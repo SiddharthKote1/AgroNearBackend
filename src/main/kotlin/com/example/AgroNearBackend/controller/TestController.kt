@@ -12,6 +12,4 @@ class TestController {
     fun hello(): String {
         return "Backend is running"
     }
-
-
 }
