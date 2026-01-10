@@ -1,8 +1,10 @@
-package com.example.AgroNearBackend.security
+package com.example.AgroNearBackend.service
 
 import com.example.AgroNearBackend.Entity.User
 import com.example.AgroNearBackend.dto.TokenPair
 import com.example.AgroNearBackend.repository.UserRepository
+import com.example.AgroNearBackend.security.HashEncoder
+import com.example.AgroNearBackend.security.JwtService
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.stereotype.Service
 
@@ -10,8 +12,9 @@ import org.springframework.stereotype.Service
 class AuthService(
     private val jwtService: JwtService,
     private val userRepository: UserRepository,
-    private val hashEncoder: HashEncoder){
-    fun register(name:String,email: String,password:String): User{
+    private val hashEncoder: HashEncoder
+){
+    fun register(name:String,email: String,password:String): User {
 
         if (userRepository.existsByEmail(email)) {
             throw IllegalArgumentException("Email already registered")
@@ -19,8 +22,8 @@ class AuthService(
 
         return userRepository.save(
             User(
-                name =name,
-                email =email,
+                name = name,
+                email = email,
                 hashedPassword = hashEncoder.encode(password)
             )
         )
@@ -37,8 +40,8 @@ class AuthService(
             val newRefreshToken= jwtService.generateRefreshToken(user.id)
 
         return TokenPair(
-            accessToken=newAccessToken,
-            refreshToken=newRefreshToken
+            accessToken = newAccessToken,
+            refreshToken = newRefreshToken
         )
     }
 

@@ -3,7 +3,7 @@ package com.example.AgroNearBackend.controller
 import com.example.AgroNearBackend.dto.AuthRequest
 import com.example.AgroNearBackend.dto.RegisterRequest
 import com.example.AgroNearBackend.dto.TokenPair
-import com.example.AgroNearBackend.security.AuthService
+import com.example.AgroNearBackend.service.AuthService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
