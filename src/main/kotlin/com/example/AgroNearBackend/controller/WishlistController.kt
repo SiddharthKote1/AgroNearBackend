@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController
 class WishlistController(
     private val wishlistService: WishlistService
 ) {
-
     private fun getUserId(): Long {
         return (SecurityContextHolder.getContext().authentication!!.principal as String).toLong()
     }
